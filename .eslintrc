@@ -1,0 +1,37 @@
+{
+  "extends": ["airbnb", "plugin:flowtype/recommended"],
+  "plugins": [
+    "flowtype"
+  ],
+  "rules": {
+    "global-require": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-quotes": ["error", "prefer-single"],
+    "react/jsx-filename-extension": "off",
+    "react/sort-comp": ["error", {
+      order: [
+        '/props/',
+        '/state/',
+        'static-methods',
+        'lifecycle',
+        'render',
+        'everything-else'
+      ]
+    }],
+    "no-underscore-dangle": "off"
+  },
+  "settings": {
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": true
+    }
+  },
+  "env": {
+    "browser": true
+  },
+  "globals": {
+    "SENTRY_URL": true,
+    "__DEV__": true,
+    "__PROD__": true,
+    "__TEST__": true
+  },
+}
