@@ -1,6 +1,6 @@
 {
   "name": "firebase-offline",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Sync local firebase database with Firebase server",
   "main": "src/index.js",
   "license": "MIT",
@@ -31,12 +31,13 @@
     "flow-typed": "^2.1.2",
     "jest": "^20.0.4"
   },
-  "dependencies": {
-    "firebase": "^4.3.0",
-    "firebase-key": "^1.0.4",
+  "peerDependencies": {
     "redux": "^3.7.2",
-    "redux-offline": "McPo/redux-offline#release",
-    "redux-thunk": "^2.2.0",
     "yup": "^0.22.0"
+  },
+  "dependencies": {
+    "firebase-key": "^1.0.4",
+    "redux-offline": "McPo/redux-offline#release",
+    "redux-thunk": "^2.2.0"
   }
 }
