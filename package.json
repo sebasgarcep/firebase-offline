@@ -1,6 +1,6 @@
 {
   "name": "firebase-offline",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Sync local firebase database with Firebase server",
   "main": "src/index.js",
   "license": "MIT",
