@@ -36,7 +36,7 @@
     "yup": "^0.22.0"
   },
   "dependencies": {
-    "@redux-offline/redux-offline": "git+ssh://git@github.com/sebasgarcep/redux-offline.git#e20f186",
+    "@redux-offline/redux-offline": "git+ssh://git@github.com/sebasgarcep/redux-offline.git#f9d0d13",
     "firebase-key": "^1.0.4",
     "redux-thunk": "^2.2.0"
   }
