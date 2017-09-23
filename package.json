@@ -1,6 +1,6 @@
 {
   "name": "firebase-offline",
-  "version": "0.14.0",
+  "version": "0.15.0",
   "description": "Sync local firebase database with Firebase server",
   "main": "src/index.js",
   "license": "MIT",
@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "@redux-offline/redux-offline": "git+ssh://git@github.com/sebasgarcep/redux-offline.git#f9d0d13",
+    "base-64": "^0.1.0",
     "firebase-key": "^1.0.4",
     "redux-thunk": "^2.2.0"
   }

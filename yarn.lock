@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@redux-offline/redux-offline@^2.1.0":
+"@redux-offline/redux-offline@git+ssh://git@github.com/sebasgarcep/redux-offline.git#f9d0d13":
   version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@redux-offline/redux-offline/-/redux-offline-2.1.0.tgz#6863914ae35a7959b85db8ef1578723c9822b78f"
+  resolved "git+ssh://git@github.com/sebasgarcep/redux-offline.git#f9d0d13"
   dependencies:
     redux-persist "^4.5.0"
 
@@ -609,6 +609,10 @@ babylon@^6.0.18, babylon@^6.17.4, babylon@^6.18.0:
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
+
+base-64@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/base-64/-/base-64-0.1.0.tgz#780a99c84e7d600260361511c4877613bf24f6bb"
 
 bcrypt-pbkdf@^1.0.0:
   version "1.0.1"
