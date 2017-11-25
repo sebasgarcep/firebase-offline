@@ -99,7 +99,7 @@ export default function createWebTools (admin) {
 
   const atob = base64.decode
 
-  const base64ToBinary = (encodedFile: string) => {
+  const base64ToBinary = (encodedFile) => {
     const raw = atob(encodedFile)
     const array = new Uint8Array(new ArrayBuffer(raw.length))
 
