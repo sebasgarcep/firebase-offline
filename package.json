@@ -2,10 +2,10 @@
   "name": "firebase-offline",
   "version": "0.16.0",
   "description": "Sync local firebase database with Firebase server",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "license": "MIT",
   "scripts": {
-    "build": "babel lib --out-dir src",
+    "build": "babel src --out-dir lib",
     "install-typedefs": "flow-typed install",
     "lint": "eslint bin build config server src tests",
     "lint:fix": "npm run lint -- --fix",
@@ -18,15 +18,8 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-plugin-transform-strict-mode": "^6.24.1",
-    "babel-preset-es2017": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
-    "eslint": "^3.19.0",
-    "eslint-config-airbnb": "^15.0.1",
-    "eslint-config-airbnb-flow": "^1.0.2",
-    "eslint-plugin-flowtype": "^2.33.0",
-    "eslint-plugin-import": "^2.3.0",
-    "eslint-plugin-jsx-a11y": "^5.0.3",
-    "eslint-plugin-react": "^7.0.1",
     "flow-bin": "^0.51.0",
     "flow-typed": "^2.1.2",
     "jest": "^20.0.4"
@@ -37,8 +30,13 @@
   },
   "dependencies": {
     "@redux-offline/redux-offline": "git+ssh://git@github.com/sebasgarcep/redux-offline.git#f9d0d13",
+    "babel-eslint": "^8.0.2",
     "base-64": "^0.1.0",
     "firebase-key": "^1.0.4",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "standard": "^10.0.3"
+  },
+  "standard": {
+    "parser": "babel-eslint"
   }
 }
