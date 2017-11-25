@@ -1,20 +1,13 @@
-// @flow
-
 import yup from 'yup'
+import thunk from 'redux-thunk'
 import { key as firebaseKey } from 'firebase-key'
 import { applyMiddleware } from 'redux'
-
-import thunk from 'redux-thunk'
-
-/* $FlowFixMe */
 import { offline } from '@redux-offline/redux-offline'
-
-import type { App, Extension, StatusCallback } from './types'
 
 import promisifyTools from './promisify-tools'
 import validateSettings from './validate-settings'
 
-export default function (settingsDirty: mixed): App {
+export default function (settingsDirty) {
   const settings = validateSettings(settingsDirty)
 
   const {
@@ -33,7 +26,7 @@ export default function (settingsDirty: mixed): App {
   }
 
   const offlineConfig = {
-    detectNetwork: (statusCallback: StatusCallback) => {
+    detectNetwork: (statusCallback) => {
       tools.detectNetworkChanges(statusCallback)
     },
     effect: (effect/* , action */) => {
@@ -49,7 +42,6 @@ export default function (settingsDirty: mixed): App {
     persistOptions: {
       storage
     },
-    // eslint-disable-next-line arrow-body-style
     discard: (/* error, action, retries */) => {
       return true
     },
@@ -70,7 +62,7 @@ export default function (settingsDirty: mixed): App {
       native
     },
 
-    use: (extension: Extension) => {
+    use: (extension) => {
       extension(app, tools)
     },
 

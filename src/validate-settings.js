@@ -1,8 +1,4 @@
-// @flow
-
-import type { Settings } from './types'
-
-export default function validateSettings (settingsDirty: mixed = {}): Settings {
+export default function validateSettings (settingsDirty) {
   if (settingsDirty === null || typeof settingsDirty !== 'object') {
     throw new Error('You must pass a settings object to \'firebase-offline\' or nothing.')
   }

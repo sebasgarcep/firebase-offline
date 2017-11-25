@@ -1,26 +1,7 @@
-// @flow
-
-/* $FlowFixMe */
 import base64 from 'base-64'
 
-import type {
-  CallbackTools,
-  CreateUserWithEmailAndPasswordCallback,
-  CommitCallback,
-  DetectNetworkChangesCallback,
-  FetchCollectionCallback,
-  FetchItemCallback,
-  LogoutCallback,
-  QueryParams,
-  DataUploadCallback,
-  SignInWithEmailAndPasswordCallback,
-  SubscribeCallback,
-  UpdatePasswordCallback,
-  SendPasswordResetEmailCallback
-} from './types'
-
-export default function createWebTools (admin: *): CallbackTools {
-  const getRefFromQueryParams = (path: string, params?: ?QueryParams) => {
+export default function createWebTools (admin) {
+  const getRefFromQueryParams = (path, params) => {
     let ref = admin.database().ref(path)
 
     if (!params) return ref
@@ -60,7 +41,7 @@ export default function createWebTools (admin: *): CallbackTools {
     return ref
   }
 
-  const fetchCollection: FetchCollectionCallback = async (path, params, callback) => {
+  const fetchCollection = async (path, params, callback) => {
     const ref = getRefFromQueryParams(path, params)
 
     try {
@@ -75,7 +56,7 @@ export default function createWebTools (admin: *): CallbackTools {
     }
   }
 
-  const fetchItem: FetchItemCallback = async (path, params, callback) => {
+  const fetchItem = async (path, params, callback) => {
     const ref = getRefFromQueryParams(path, params)
 
     try {
@@ -87,7 +68,7 @@ export default function createWebTools (admin: *): CallbackTools {
     }
   }
 
-  const subscribe: SubscribeCallback = (path, eventType, params, callback) => {
+  const subscribe = (path, eventType, params, callback) => {
     const ref = getRefFromQueryParams(path, params)
 
     const successCallback = (snapshot) => {
@@ -99,7 +80,7 @@ export default function createWebTools (admin: *): CallbackTools {
     ref.on(eventType, successCallback, errorCallback)
   }
 
-  const commit: CommitCallback = async (updates, callback) => {
+  const commit = async (updates, callback) => {
     try {
       await admin.database().ref().update(updates)
       if (callback) callback(null)
@@ -108,7 +89,7 @@ export default function createWebTools (admin: *): CallbackTools {
     }
   }
 
-  const detectNetworkChanges: DetectNetworkChangesCallback = (statusCallback) => {
+  const detectNetworkChanges = (statusCallback) => {
     const connectedRef = admin.database().ref('.info/connected')
     connectedRef.on('value', (snapshot) => {
       const status = snapshot.val() === true
@@ -129,7 +110,7 @@ export default function createWebTools (admin: *): CallbackTools {
     return array
   }
 
-  const dataUpload: DataUploadCallback = async (path, data, callback) => {
+  const dataUpload = async (path, data, callback) => {
     try {
       const storageRef = admin.storage().ref(path)
       const bytes = base64ToBinary(data)
@@ -140,7 +121,7 @@ export default function createWebTools (admin: *): CallbackTools {
     }
   }
 
-  const createUserWithEmailAndPassword: CreateUserWithEmailAndPasswordCallback =
+  const createUserWithEmailAndPassword =
     async (email, password, callback) => {
       try {
         const userRecord = await admin.auth().createUserWithEmailAndPassword(email, password)
@@ -150,7 +131,7 @@ export default function createWebTools (admin: *): CallbackTools {
       }
     }
 
-  const signInWithEmailAndPassword: SignInWithEmailAndPasswordCallback =
+  const signInWithEmailAndPassword =
     async (email, password, callback) => {
       try {
         const userRecord = await admin.auth().signInWithEmailAndPassword(email, password)
@@ -160,7 +141,7 @@ export default function createWebTools (admin: *): CallbackTools {
       }
     }
 
-  const logout: LogoutCallback = async (callback) => {
+  const logout = async (callback) => {
     try {
       await admin.auth().signOut()
       if (callback) callback(null)
@@ -169,7 +150,7 @@ export default function createWebTools (admin: *): CallbackTools {
     }
   }
 
-  const updatePassword: UpdatePasswordCallback = async (password, callback) => {
+  const updatePassword = async (password, callback) => {
     try {
       await admin.auth().currentUser.updatePassword(password)
       if (callback) callback(null)
@@ -178,7 +159,7 @@ export default function createWebTools (admin: *): CallbackTools {
     }
   }
 
-  const sendPasswordResetEmail: SendPasswordResetEmailCallback = async (email, callback) => {
+  const sendPasswordResetEmail = async (email, callback) => {
     try {
       await admin.auth().sendPasswordResetEmail(email)
       if (callback) callback(null)
