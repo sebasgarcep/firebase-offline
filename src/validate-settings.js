@@ -116,6 +116,7 @@ export default function validateSettings (settingsDirty) {
       removeItem,
       getAllKeys
     },
+    onRehydrate,
     validate
   }
 }
