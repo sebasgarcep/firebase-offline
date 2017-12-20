@@ -7,6 +7,7 @@ export default function validateSettings (settingsDirty) {
     tools,
     platform,
     storage,
+    onRehydrate,
     validate
   } = settingsDirty
 
@@ -68,6 +69,10 @@ export default function validateSettings (settingsDirty) {
 
   if (storage === null || typeof storage !== 'object') {
     throw new Error('\'settings.storage\' must be an object.')
+  }
+
+  if (onRehydrate !== undefined && typeof onRehydrate !== 'function') {
+    throw new Error('\'settings.onRehydrate\' must be a function or undefined.')
   }
 
   const { getItem, setItem, removeItem, getAllKeys } = storage

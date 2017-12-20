@@ -14,6 +14,7 @@ export default function (settingsDirty) {
     tools: basicTools,
     platform,
     storage,
+    onRehydrate,
     validate
   } = settings
 
@@ -42,6 +43,7 @@ export default function (settingsDirty) {
     persistOptions: {
       storage
     },
+    persistCallback: onRehydrate,
     discard: (/* error, action, retries */) => {
       return true
     },
