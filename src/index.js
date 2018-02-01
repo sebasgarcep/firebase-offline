@@ -81,23 +81,25 @@ export default function (settingsDirty) {
 
         let middleware = []
 
-        if (config.validate) {
-          const schema = yup.object().shape(config.validate)
-          const validationCallback = params => (/* dispatch, getState */) =>
-            schema.validate(params, validate)
-
-          middleware.push(validationCallback)
-        }
-
         if (config.pre) {
           middleware = middleware.concat(config.pre)
         }
 
         middleware.push(config.handler)
 
-        newActions[key] = (params = {}) => (dispatch, getState) =>
-          middleware.reduce((acc, mid) =>
-            acc.then(() => mid(params, tools)(dispatch, getState)), Promise.resolve(true))
+        newActions[key] = (paramsPre = {}) => (dispatch, getState) =>
+          let validationJob = Promise.resolve(paramsPre)
+
+          if (config.validate) {
+            const schema = yup.object().shape(config.validate)
+            validationJob = schema.validate(params, validate)
+          }
+
+          validationJob.then(params => {
+            return middleware.reduce((acc, mid) => {
+              return acc.then(() => mid(params, tools)(dispatch, getState))
+            }, Promise.resolve(true))
+          })
       })
 
       app.actions = newActions
