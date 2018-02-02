@@ -31,8 +31,20 @@ export default function (settingsDirty) {
       tools.detectNetworkChanges(statusCallback)
     },
     effect: (effect/* , action */) => {
-      if (!effect.updates) return Promise.resolve(true)
-      return tools.commit(effect.updates)
+      const { updates: updatesPre } = effect
+
+      if (!updatesPre) return Promise.resolve(true)
+
+      const updates = {}
+      for (const path in updatesPre) {
+        const value = updatesPre[path]
+
+        if (value !== undefined) {
+          updates[path] = value
+        }
+      }
+
+      return tools.commit(updates)
     },
     /*
       in web use localForage
